@@ -8,6 +8,7 @@ def index(request):
     banner = Banner.objects.all().order_by("-id")[:3]
     banner_all = Banner.objects.all()
     facilties = Facilties.objects.all().order_by("id")[:3]
+    video = Video.objects.latest('id')
     if request.method == 'POST':
         fullname = request.POST.get("fullname")
         phone = request.POST.get("phone")
@@ -33,7 +34,7 @@ def about_us(request):
 def team(request):
     admin = Admin.objects.latest('id')
     footer = Footer.objects.latest('id')
-    team = Team.objects.all()
+    team = TeamPage.objects.latest('id')
     if request.method == 'POST':
         fullname = request.POST.get("fullname")
         phone = request.POST.get("phone")
@@ -59,7 +60,7 @@ def post(request, id):
 def news(request):
     admin = Admin.objects.latest("id")
     footer = Footer.objects.latest('id')
-    news = News.objects.latest('id')
+    news = NewsBackground.objects.latest('id')
     banner_all = Banner.objects.all()
     if request.method == 'POST':
         fullname = request.POST.get("fullname")
@@ -73,6 +74,7 @@ def news(request):
 def gallery(request):
     admin = Admin.objects.latest('id')
     footer = Footer.objects.latest('id')
+    gallery = GalleryPage.objects.latest('id')
     if request.method == 'POST':
         fullname = request.POST.get("fullname")
         phone = request.POST.get("phone")

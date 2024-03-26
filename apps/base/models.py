@@ -21,8 +21,8 @@ class Admin(models.Model):
 class Banner(models.Model):
     banner_title = models.CharField(max_length=20, verbose_name='Banner_title')
     banner_text = models.TextField(verbose_name='Banner text')
-    price = models.IntegerField(verbose_name='Price')
     background = models.ImageField(upload_to='banner', verbose_name='Background')
+    price = models.IntegerField(verbose_name='Price')
     main_image = models.ImageField(upload_to='main_image', verbose_name='Main image')
     quote = models.TextField(verbose_name="Quote")
     image_1 = models.ImageField(upload_to='image_1', verbose_name='Image 1')
@@ -40,8 +40,8 @@ class AboutUs(models.Model):
     title = models.CharField(max_length=100, verbose_name='Title')
     description = models.TextField(verbose_name='Description')
     background = models.ImageField(upload_to='back_about_us', verbose_name='Background')
-    image_1 = models.ImageField(upload_to='about_us', verbose_name='Name 1')
-    image_2 = models.ImageField(upload_to='about_us', verbose_name='Name 2')
+    image_1 = models.ImageField(upload_to='about_us', verbose_name='Image 1')
+    image_2 = models.ImageField(upload_to='about_us', verbose_name='Image 2')
 
     def __str__(self) -> str:
         return self.title
@@ -49,17 +49,6 @@ class AboutUs(models.Model):
     class Meta:
         verbose_name = 'About'
         verbose_name_plural = 'About'
-
-class News(models.Model):
-    title = models.CharField(max_length=50, verbose_name='Title')
-    image = models.ImageField(upload_to='news', verbose_name='Image')
-
-    def __str__(self) -> str:
-        return f"{self.title}"
-    
-    class Meta:
-        verbose_name = 'News'
-        verbose_name_plural = 'News'
 
 class Contact(models.Model):
     id =  models.IntegerField(primary_key= True, blank= True, null= False, verbose_name= 'ID')
@@ -128,7 +117,19 @@ class Facilties(models.Model):
         verbose_name = 'Facilty'
         verbose_name_plural = 'Facilties'
 
+class TeamPage(models.Model):
+    id =  models.IntegerField(primary_key= True, blank= True, null= False, verbose_name= 'ID')
+    background = models.ImageField(upload_to='team_background', verbose_name='Background')
+
+    def __str__(self) -> str:
+        return str(self.id)
+    
+    class Meta:
+        verbose_name = 'Team'
+        verbose_name_plural = 'Teams'
+
 class Team(models.Model):
+    team = models.ForeignKey(TeamPage, related_name='team_page', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='team', verbose_name='Image')
     fullname = models.CharField(max_length=100, verbose_name='Full name')
     job = models.CharField(max_length=100, verbose_name='Job')
@@ -142,5 +143,39 @@ class Team(models.Model):
         return self.fullname
     
     class Meta:
-        verbose_name = 'Team'
-        verbose_name_plural = 'Teams'
+        verbose_name = 'Worker'
+        verbose_name_plural = 'Workers'
+
+class NewsBackground(models.Model):
+    image = models.ImageField(upload_to='news_background', verbose_name='Image')
+
+    class Meta:
+        verbose_name = 'News_Background'
+        verbose_name_plural = 'News_Backgrounds'
+
+class GalleryPage(models.Model):
+    id =  models.IntegerField(primary_key= True, blank= True, null= False, verbose_name= 'ID')
+    background = models.ImageField(upload_to='gallary_background', verbose_name='Background')
+
+    def __str__(self) -> str:
+        return str(self.id)
+    
+    class Meta:
+        verbose_name = 'Gallery background'
+        verbose_name_plural = 'Gallery backgrounds'
+
+class Gallery(models.Model):
+    gallery = models.ForeignKey(GalleryPage, related_name='gallery_page', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='gallery', verbose_name='Image')
+
+    class Meta:
+        verbose_name = 'Gallery'
+        verbose_name_plural = 'Galleries'
+
+class Video(models.Model):
+    background = models.ImageField(upload_to='gallary_background', verbose_name='Background')
+    video = models.URLField(verbose_name='Video')
+
+    class Meta:
+        verbose_name = 'Video'
+        verbose_name_plural = 'Videos'
