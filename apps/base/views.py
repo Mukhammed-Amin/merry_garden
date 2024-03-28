@@ -2,6 +2,10 @@ from django.shortcuts import render
 from apps.base.models import *
 
 # Create your views here.
+def home(request):
+    admin = Admin.objects.latest('id')
+    return render(request, 'include/homepage.html', locals())
+
 def index(request):
     admin = Admin.objects.latest('id')
     footer = Footer.objects.latest('id')
