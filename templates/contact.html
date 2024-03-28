@@ -44,19 +44,19 @@
                 </div>
                 <div class="col-md-5 mb-30 offset-md-1">
                     <h3>Свяжитесь с нами</h3>
-                    <form method="POST" class="contact__form">
+                    <form method="POST" class="contact_form">
                         <!-- form message -->
                         {% csrf_token %}
                         <!-- form elements -->
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <input name="fullname" type="text" placeholder="ФИО *" required>
+                                <input name="fullname" type="text" placeholder="ФИО" >
                             </div>
                             <div class="col-md-6 form-group">
                                 <input name="email" type="email" placeholder="Email">
                             </div>
                             <div class="col-md-6 form-group">
-                                <input name="phone" type="text" placeholder="Номер Телефона *" required>
+                                <input name="phone" type="text" placeholder="Номер Телефона"
                             </div>
                             <div class="col-md-6 form-group">
                                 <input name="theme" type="text" placeholder="Тема">
